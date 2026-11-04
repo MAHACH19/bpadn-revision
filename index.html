@@ -594,7 +594,7 @@ function panelCarte(p, m){
   if (!carteOpen) carteOpen = m.branches.map(() => false);
   const nb = m.branches.reduce((a, b) => a + b.subs.reduce((x, s) => x + s.items.length, 0), 0);
   p.innerHTML = `<div class="row" style="justify-content:space-between"><p class="muted" style="font-size:14px;margin:0;flex:1 1 240px">${m.branches.length} branches, ${nb} idées. Touche une branche pour la déplier. « Me tester » cache les détails : récite-les, puis touche chaque ligne.</p>
-    <div class="row"><button class="btn ghost small" type="button" id="cmAll">Tout déplier</button><button class="btn ghost small" type="button" id="cmTest">Me tester</button></div></div>
+    <div class="row"><a class="btn small" href="supernova.html?file=${encodeURIComponent((()=>{const k=String((location.hash.match(/\d+/)||[1])[0]).padStart(2,"0");return "pdf/ch"+k+"/BPADN_Carte_mentale_Chapitre"+k+".pdf"})())}&name=${encodeURIComponent("Carte mentale · "+m.centre)}">Voir la vraie carte</a><button class="btn ghost small" type="button" id="cmAll">Tout déplier</button><button class="btn ghost small" type="button" id="cmTest">Me tester</button></div></div>
     <div class="mm" id="mm"><div class="mm-centre">${esc(m.centre)}</div>
     ${m.branches.map((b, i) => `<section class="mm-br" style="--c:${b.c}"${carteOpen[i] ? " data-open" : ""}>
       <button class="mm-head" type="button" data-b="${i}" aria-expanded="${carteOpen[i]}"><span>${esc(b.t)}</span><span class="mm-meta">${b.subs.length} sous-branches<i aria-hidden="true">${carteOpen[i] ? "−" : "+"}</i></span></button>
