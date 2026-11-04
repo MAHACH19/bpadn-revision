@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Réviser la BPADN</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="BPADN">
+<meta name="theme-color" content="#1d4f91">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>
+:root{--bg:#eef3fa;--card:#fff;--ink:#14213a;--mute:#5b6b85;--line:#d6e0ee;--acc:#1d4f91;--acc2:#3a7bd5;--soft:#e3edfb;--ok:#1f8a5b;--ko:#c0392b;--warn:#b7791f}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1726;--card:#18233a;--ink:#e6edf8;--mute:#9aabc6;--line:#2a3a58;--acc:#7fb0ff;--acc2:#5d97f0;--soft:#1f2f4d;--ok:#4cc38a;--ko:#ff7b6b;--warn:#f0b35a}}
+:root[data-theme=dark]{--bg:#0f1726;--card:#18233a;--ink:#e6edf8;--mute:#9aabc6;--line:#2a3a58;--acc:#7fb0ff;--acc2:#5d97f0;--soft:#1f2f4d;--ok:#4cc38a;--ko:#ff7b6b;--warn:#f0b35a}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:5;background:var(--acc);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:10px}
+:root[data-theme=dark] header{background:#13284a}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) header{background:#13284a}}
+header h1{font-size:18px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header button{background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:10px;padding:6px 10px;font-size:15px}
+main{max-width:860px;margin:0 auto;padding:14px 16px}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:5;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs button{flex:1;background:none;border:0;color:var(--mute);padding:8px 2px;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav.tabs button b{font-size:21px;font-weight:400;line-height:1}
+nav.tabs button.on{color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px}
+h2{font-size:20px;margin:6px 0 12px}h3{font-size:16px;margin:16px 0 8px;color:var(--acc)}
+.mute{color:var(--mute);font-size:14px}
+.vol{font-weight:700;margin:18px 0 8px;color:var(--acc)}
+.ch{display:flex;gap:12px;align-items:center;cursor:pointer}
+.ch .num{flex:none;width:40px;height:40px;border-radius:10px;background:var(--soft);color:var(--acc);display:grid;place-items:center;font-weight:700}
+.ch .tt{flex:1;min-width:0}
+.bar{height:6px;border-radius:3px;background:var(--soft);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--ok)}
+.btn{display:inline-block;border:0;border-radius:12px;padding:11px 16px;font-size:16px;background:var(--acc2);color:#fff;text-decoration:none;cursor:pointer}
+.btn.alt{background:var(--soft);color:var(--acc)}.btn.ok{background:var(--ok)}.btn.ko{background:var(--ko)}
+.btn:disabled{opacity:.5}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.seg{display:flex;gap:6px;overflow-x:auto;margin:0 -16px 12px;padding:0 16px;scrollbar-width:none}
+.seg button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:7px 14px;font-size:14px}
+.seg button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+th{color:var(--mute);font-weight:600}
+td:first-child{font-weight:600}
+.tbl{overflow-x:auto}
+dl{margin:0}dt{font-weight:700;margin-top:10px}dd{margin:2px 0 0}
+.sec{cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+.ext{border-left:4px solid var(--warn)}
+.tag{font-size:12px;border-radius:6px;padding:1px 6px;background:var(--soft);color:var(--acc)}
+.flash{min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer;font-size:18px;white-space:pre-line}
+.flash .back{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-size:16px;text-align:left}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:12px;margin:8px 0;font-size:15px;white-space:pre-line}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+.opt.bad{border-color:var(--ko);background:color-mix(in srgb,var(--ko) 14%,var(--card))}
+input[type=search]{width:100%;font-size:16px;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.pdf{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.pdf:last-child{border:0}.pdf a{flex:1;color:var(--ink);text-decoration:none}.pdf small{color:var(--mute)}
+.pdf button{border:0;background:none;font-size:18px;color:var(--acc)}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stat b{display:block;font-size:24px;color:var(--acc)}
+mark{background:#ffe58a;color:#000;border-radius:3px}
+.hidden{display:none}
+</style>
+</head><body>
+<header><button id="back" class="hidden" aria-label="Retour">‹</button><h1 id="ttl">Réviser la BPADN</h1><button id="theme" aria-label="Thème">◐</button></header>
+<main id="app"></main>
+<nav class="tabs">
+ <button data-v="home" class="on"><b>⌂</b>Accueil</button>
+ <button data-v="today"><b>↻</b>Réviser</button>
+ <button data-v="search"><b>⌕</b>Chercher</button>
+ <button data-v="lib"><b>▤</b>Bibliothèque</button>
+ <button data-v="blocs"><b>▦</b>Mes blocs</button>
+</nav>
+<script>
+'use strict';
+const $=s=>document.querySelector(s), app=$('#app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const VOLS={1:'Volume 1 · Chapitres 1 à 19',2:'Volume 2 · Chapitres 20 à 28',3:'Volume 3 · Chapitres 29 à 41'};
+const BLOCS=[
+ {k:'BC1',t:'BC1',d:'Bloc 1',u:''},
+ {k:'BC2',t:'BC2',d:'Bloc 2',u:''},
+ {k:'BPADN',t:'BPADN',d:'Bases physiopathologiques (cette appli)',u:'./'},
+ {k:'BC3',t:'BC3',d:'Bloc 3 · santé publique',u:'https://mahach19.github.io/bc3-revision/'},
+ {k:'EN',t:'Anglais',d:'Bloc 4 · oral E1',u:''}];
+let IDX=[], CH={}, st=load();
+function load(){try{return JSON.parse(localStorage.getItem('bpadn')||'{}')}catch(e){return {}}}
+function save(){try{localStorage.setItem('bpadn',JSON.stringify(st))}catch(e){}}
+st.box=st.box||{}; st.qcm=st.qcm||{};
+try{const t=localStorage.getItem('bpadn-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+$('#theme').onclick=()=>{const d=document.documentElement,n=d.dataset.theme==='dark'?'light':(d.dataset.theme==='light'?'':'dark');if(n)d.dataset.theme=n;else delete d.dataset.theme;try{localStorage.setItem('bpadn-theme',n)}catch(e){}};
+async function getCh(n){if(!CH[n])CH[n]=await (await fetch(`data/ch${String(n).padStart(2,'0')}.json`)).json();return CH[n]}
+const p2=n=>String(n).padStart(2,'0');
+const DAY=86400000, INT=[0,1,3,7,15,30];
+// Cartes : définitions, formules, valeurs repères (hors approfondissements)
+function cards(c){const out=[];c.secs.forEach((s,si)=>{if(s.ext)return;
+ s.defs.forEach((d,i)=>out.push({id:`${c.n}:${si}:d${i}`,k:'Définition',s:s.t,f:d[0],b:d[1]}));
+ s.form.forEach((d,i)=>out.push({id:`${c.n}:${si}:f${i}`,k:'Formule',s:s.t,f:d[0],b:d[1]+(d[2]?'\n\n'+d[2]:'')}));
+ s.val.forEach((v,j)=>v.rows.forEach((r,i)=>{if(r.length<2)return;out.push({id:`${c.n}:${si}:v${j}.${i}`,k:'Valeur repère',s:s.t,f:r[0],b:r.slice(1).filter(Boolean).map((x,m)=>(r.length>2&&v.head[m+1]?v.head[m+1]+' : ':'')+x).join('\n')})}))});return out}
+function due(id){const b=st.box[id];return !b||b.t<=Date.now()}
+function known(c){return cards(c).filter(x=>(st.box[x.id]||{}).l>=3).length}
+function nav(v){document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v))}
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>go('#'+b.dataset.v));
+$('#back').onclick=()=>history.back();
+function go(h){location.hash=h}
+window.onhashchange=route;
+function title(t,back){$('#ttl').textContent=t;$('#back').classList.toggle('hidden',!back);window.scrollTo(0,0)}
+async function route(){const h=location.hash.slice(1)||'home',[v,a,b]=h.split('/');
+ nav(v==='ch'?'home':v);
+ if(v==='ch')return chapter(+a,b||'fiche');
+ if(v==='today')return today();
+ if(v==='search')return search();
+ if(v==='lib')return lib(a);
+ if(v==='blocs')return blocs();
+ home()}
+function pct(n){const i=IDX.find(x=>x.n===n),tot=i.nd+i.nf+i.nv;let k=0;for(const id in st.box)if(id.startsWith(n+':')&&st.box[id].l>=3)k++;return tot?Math.round(100*k/tot):0}
+function home(){title('Réviser la BPADN');
+ let tot=0,kn=0,dueN=0;IDX.forEach(i=>tot+=i.nd+i.nf+i.nv);for(const id in st.box){if(st.box[id].l>=3)kn++;if(st.box[id].t<=Date.now())dueN++}
+ let h=`<div class="card"><div class="stat"><div><b>${tot}</b><span class="mute">cartes</span></div><div><b>${kn}</b><span class="mute">acquises</span></div><div><b>${dueN}</b><span class="mute">à revoir</span></div></div>
+ ${dueN?`<p style="margin:12px 0 0"><a class="btn" href="#today">Réviser les ${dueN} cartes du jour</a></p>`:''}</div>`;
+ [1,2,3].forEach(v=>{h+=`<div class="vol">${VOLS[v]}</div>`;IDX.filter(i=>i.v===v).forEach(i=>{const p=pct(i.n);
+  h+=`<div class="card ch" onclick="go('#ch/${i.n}')"><div class="num">${i.n}</div><div class="tt"><div>${esc(i.t)}</div><div class="mute">${i.nd} déf. · ${i.nf} formules · ${i.nv} valeurs${st.qcm[i.n]!=null?' · QCM '+st.qcm[i.n]+' %':''}</div><div class="bar"><i style="width:${p}%"></i></div></div></div>`})});
+ app.innerHTML=h}
+const TABS=[['fiche','Fiche'],['cartes','Flashcards'],['qcm','QCM'],['formules','Quiz formules'],['pdf','PDF']];
+async function chapter(n,tab){const i=IDX.find(x=>x.n===n);title(`Ch. ${n} · ${i.t}`,true);
+ app.innerHTML='<p class="mute">Chargement…</p>';const c=await getCh(n);
+ let h=`<div class="seg">${TABS.map(([k,l])=>`<button class="${k===tab?'on':''}" onclick="location.replace('#ch/${n}/${k}')">${l}</button>`).join('')}</div><div id="pane"></div>`;
+ app.innerHTML=h;const P=$('#pane');
+ ({fiche,cartes:flash,qcm,formules:fquiz,pdf:pdfs})[tab](P,c,i)}
+function fiche(P,c){let h='';c.secs.forEach((s,si)=>{
+ h+=`<div class="card ${s.ext?'ext':''}"><div class="sec" onclick="this.nextElementSibling.classList.toggle('hidden')"><b>${esc(s.t)}</b><span class="mute">${s.defs.length+s.form.length}</span></div><div class="${si?'hidden':''}">`;
+ if(s.ext)h+=`<p class="mute">Pour aller plus loin (niveau Licence 3, non exigible à l'examen).</p>`;
+ if(s.defs.length)h+=`<h3>Définitions</h3><dl>${s.defs.map(d=>`<dt>${esc(d[0])}</dt><dd>${esc(d[1])}</dd>`).join('')}</dl>`;
+ if(s.form.length)h+=`<h3>Formules</h3><div class="tbl"><table><tr><th>Grandeur</th><th>Formule</th><th>Unités, exemple</th></tr>${s.form.map(r=>`<tr>${r.map(x=>`<td>${esc(x).replace(/\n/g,'<br>')}</td>`).join('')}</tr>`).join('')}</table></div>`;
+ s.val.forEach(v=>{h+=`<h3>Valeurs repères</h3><div class="tbl"><table><tr>${v.head.map(x=>`<th>${esc(x)}</th>`).join('')}</tr>${v.rows.map(r=>`<tr>${r.map(x=>`<td>${esc(x).replace(/\n/g,'<br>')}</td>`).join('')}</tr>`).join('')}</table></div>`});
+ h+='</div></div>'});P.innerHTML=h}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
+function grade(id,ok){const b=st.box[id]||{l:0};b.l=ok?Math.min(5,b.l+1):0;b.t=Date.now()+(ok?INT[b.l]*DAY:0);if(!ok)b.t=Date.now()+60000;st.box[id]=b;save()}
+function runCards(P,list,label,again){
+ let q=list.slice(),i=0;if(!q.length){P.innerHTML=`<div class="card">Rien à revoir pour l'instant. Reviens demain !</div>`;return}
+ const show=()=>{if(i>=q.length){P.innerHTML=`<div class="card"><h2>Bravo !</h2><p>${q.length} cartes revues.</p><button class="btn" id="ag">Recommencer</button></div>`;$('#ag').onclick=again;return}
+  const c=q[i],b=st.box[c.id];
+  P.innerHTML=`<p class="mute">${label} · carte ${i+1}/${q.length} · <span class="tag">${c.k}</span> ${b?'· boîte '+b.l:''}</p>
+  <div class="card flash" id="fc"><div><b>${esc(c.f)}</b></div><div class="mute" style="font-size:13px;margin-top:6px">${esc(c.s)}</div><div class="back hidden" id="bk">${esc(c.b)}</div><div class="mute" id="hint" style="margin-top:12px;font-size:13px">Touche pour voir la réponse</div></div>
+  <div class="row hidden" id="gr"><button class="btn ko" style="flex:1" id="no">À revoir</button><button class="btn ok" style="flex:1" id="yes">Je savais</button></div>`;
+  $('#fc').onclick=()=>{$('#bk').classList.remove('hidden');$('#hint').classList.add('hidden');$('#gr').classList.remove('hidden')};
+  $('#no').onclick=()=>{grade(c.id,false);q.push(c);i++;show()};$('#yes').onclick=()=>{grade(c.id,true);i++;show()}};show()}
+function flash(P,c){const all=cards(c);const kinds=['Toutes','Définition','Formule','Valeur repère'];
+ P.innerHTML=`<div class="card"><p style="margin-top:0">${all.length} cartes · ${known(c)} acquises · ${all.filter(x=>due(x.id)).length} à revoir.</p>
+ <p class="mute">« Je savais » espace la carte (1, 3, 7, 15 puis 30 jours). « À revoir » la remet dans la séance.</p>
+ <div class="row">${kinds.map(k=>`<button class="btn alt" data-k="${k}">${k==='Toutes'?'Toutes':k+'s'}</button>`).join('')}</div></div><div id="fz"></div>`;
+ P.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k;const l=shuffle(all.filter(x=>(k==='Toutes'||x.k===k)&&due(x.id))).slice(0,20);
+  runCards(P,l,`Ch. ${c.n}`,()=>flash(P,c))})}
+function today(){title('Révision du jour');nav('today');
+ app.innerHTML='<p class="mute">Chargement…</p>';
+ const ns=[...new Set(Object.keys(st.box).map(k=>+k.split(':')[0]))];
+ Promise.all(ns.map(getCh)).then(cs=>{const l=shuffle(cs.flatMap(cards).filter(x=>st.box[x.id]&&due(x.id))).slice(0,40);
+  if(!l.length){app.innerHTML=`<div class="card"><h2>Tout est à jour</h2><p>Aucune carte à revoir aujourd'hui. Ouvre un chapitre et lance des flashcards pour commencer : les cartes reviendront ici au bon moment.</p></div>`;return}
+  runCards(app,l,'Révision du jour',today)})}
+// QCM : définitions (terme ↔ définition) et valeurs repères
+function mkQ(c,pool,kind){const out=[];const byS={};pool.forEach(x=>(byS[x.s]=byS[x.s]||[]).push(x));
+ shuffle(pool.slice()).forEach(x=>{const same=shuffle((byS[x.s]||[]).filter(y=>y!==x&&y.f!==x.f&&y.b!==x.b));const oth=shuffle(pool.filter(y=>y.s!==x.s&&y.f!==x.f&&y.b!==x.b));
+  const dis=same.concat(oth).slice(0,3);if(dis.length<3)return;const rev=Math.random()<.5;
+  out.push(rev?{q:`Quel terme correspond à :\n« ${x.b.split("\n\n")[0]} »`,o:shuffle([x,...dis].map(y=>({t:y.f,ok:y===x}))),x}:{q:kind==='Formule'?`Quelle est la formule : ${x.f} ?`:`${x.f} :`,o:shuffle([x,...dis].map(y=>({t:y.b.split('\n\n')[0],ok:y===x}))),x})});return out}
+function quiz(P,c,list,key,again){let i=0,sc=0;const qs=list.slice(0,10);
+ if(qs.length<2){P.innerHTML='<div class="card">Pas assez de contenu pour un QCM dans ce chapitre.</div>';return}
+ const show=()=>{if(i>=qs.length){const p=Math.round(100*sc/qs.length);if(key){st.qcm[c.n]=p;save()}
+   P.innerHTML=`<div class="card"><h2>${sc}/${qs.length} (${p} %)</h2><p>${p>=80?'Très bien !':p>=50?'Pas mal, revois les cartes ratées.':'Repasse par la fiche puis réessaie.'}</p><button class="btn" id="ag">Nouveau QCM</button></div>`;$('#ag').onclick=again;return}
+  const q=qs[i];P.innerHTML=`<p class="mute">Question ${i+1}/${qs.length} · score ${sc}</p><div class="card"><p style="margin:0;white-space:pre-line"><b>${esc(q.q)}</b></p><p class="mute" style="margin:6px 0 0;font-size:13px">${esc(q.x.s)}</p></div>
+  ${q.o.map((o,j)=>`<button class="opt" data-j="${j}">${esc(o.t)}</button>`).join('')}<div id="nx"></div>`;
+  P.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(P.querySelector('.good'))return;const o=q.o[+b.dataset.j];if(o.ok)sc++;else grade(q.x.id,false);
+   P.querySelectorAll('.opt').forEach((e,j)=>{if(q.o[j].ok)e.classList.add('good')});if(!o.ok)b.classList.add('bad');
+   $('#nx').innerHTML='<button class="btn" style="width:100%">Suivant</button>';$('#nx').firstChild.onclick=()=>{i++;show()}})};show()}
+function qcm(P,c){const pool=cards(c).filter(x=>x.k!=='Formule');quiz(P,c,mkQ(c,pool),true,()=>qcm(P,c))}
+function fquiz(P,c){const pool=cards(c).filter(x=>x.k==='Formule');quiz(P,c,mkQ(c,pool,'Formule'),false,()=>fquiz(P,c))}
+// PDF
+const mo=s=>s>1e6?(s/1e6).toFixed(1).replace('.',',')+' Mo':Math.round(s/1e3)+' ko';
+const purl=(n,f)=>`pdf/ch${p2(n)}/${f}`;
+function pdfList(i){return i.pdf.map(p=>`<div class="pdf"><a href="${purl(i.n,p.f)}" target="_blank" rel="noopener">${esc(p.l)}<br><small>${mo(p.s)}</small></a><button title="Garder hors ligne" onclick="keep('${purl(i.n,p.f)}',this)">⤓</button></div>`).join('')}
+function pdfs(P,c,i){P.innerHTML=`<div class="card">${pdfList(i)}</div><div class="card"><b>Chapitre complet</b><p class="mute">Assemble cours, fiche, cahier et annales en un seul PDF sur ton téléphone.</p><button class="btn" onclick="merge(${i.n},false,this)">Complet</button> <button class="btn alt" onclick="merge(${i.n},true,this)">Complet journal</button></div>`}
+async function keep(u,b){b.textContent='…';try{const c=await caches.open('bpadn-pdf');await c.add(u);b.textContent='✓'}catch(e){b.textContent='!';alert("Téléchargement impossible (réseau ?)")}}
+function loadScript(s){return new Promise((r,j)=>{const e=document.createElement('script');e.src=s;e.onload=r;e.onerror=j;document.head.appendChild(e)})}
+async function merge(n,jr,b){const i=IDX.find(x=>x.n===n);const want=['Cours_','Fiche','Cahier_','Annales'];
+ const files=want.map(w=>i.pdf.find(p=>p.f.includes(w)&&(w==='Fiche'||w==='Annales'||(jr===p.f.includes('journal'))))).filter(Boolean);
+ const t=b.textContent;b.disabled=true;b.textContent='Assemblage…';
+ try{if(!window.PDFLib)await loadScript('vendor/pdf-lib.min.js');const out=await PDFLib.PDFDocument.create();
+  for(const f of files){const src=await PDFLib.PDFDocument.load(await (await fetch(purl(n,f.f))).arrayBuffer(),{ignoreEncryption:true});(await out.copyPages(src,src.getPageIndices())).forEach(p=>out.addPage(p))}
+  const blob=new Blob([await out.save()],{type:'application/pdf'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`BPADN_Complet_Chapitre${p2(n)}${jr?'_journal':''}.pdf`;document.body.appendChild(a);a.click();a.remove();
+ }catch(e){alert('Assemblage impossible : '+e.message)}b.disabled=false;b.textContent=t}
+function lib(open){title('Bibliothèque');let h=`<p class="mute">Tous les PDF des 41 chapitres. Touche ⤓ pour garder un PDF hors ligne.</p>`;
+ [1,2,3].forEach(v=>{h+=`<div class="vol">${VOLS[v]}</div>`;IDX.filter(i=>i.v===v).forEach(i=>{
+  h+=`<div class="card"><div class="sec" onclick="this.nextElementSibling.classList.toggle('hidden')"><b>${i.n}. ${esc(i.t)}</b><span class="mute">${i.pdf.length} PDF</span></div><div class="hidden" style="margin-top:6px">${pdfList(i)}<p style="margin:10px 0 0"><button class="btn alt" onclick="merge(${i.n},false,this)">Chapitre complet</button> <button class="btn alt" onclick="merge(${i.n},true,this)">Complet journal</button></p></div></div>`})});
+ app.innerHTML=h}
+function search(){title('Chercher');app.innerHTML=`<input type="search" id="q" placeholder="Un terme, une formule, une valeur…" autofocus><p class="mute" id="sm">Recherche dans les fiches des 41 chapitres.</p><div id="res"></div>`;
+ let all=null,tm;$('#q').oninput=e=>{clearTimeout(tm);tm=setTimeout(async()=>{const q=e.target.value.trim().toLowerCase();if(q.length<2){$('#res').innerHTML='';return}
+  if(!all){$('#sm').textContent='Chargement des fiches…';all=(await Promise.all(IDX.map(i=>getCh(i.n)))).flatMap(c=>cards(c).map(x=>({...x,n:c.n})));$('#sm').textContent=''}
+  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''),nq=norm(q);
+  const r=all.filter(x=>norm(x.f).includes(nq)).concat(all.filter(x=>!norm(x.f).includes(nq)&&norm(x.b).includes(nq))).slice(0,60);
+  const hl=s=>{const n=norm(s),k=n.indexOf(nq);return k<0?esc(s):esc(s.slice(0,k))+'<mark>'+esc(s.slice(k,k+q.length))+'</mark>'+esc(s.slice(k+q.length))};
+  $('#res').innerHTML=r.length?r.map(x=>`<div class="card" onclick="go('#ch/${x.n}')"><b>${hl(x.f)}</b> <span class="tag">${x.k}</span><div style="white-space:pre-line">${hl(x.b)}</div><div class="mute">Ch. ${x.n} · ${esc(x.s)}</div></div>`).join(''):'<p>Aucun résultat.</p>'},200)}}
+function blocs(){title('Mes blocs');app.innerHTML=`<p class="mute">Toutes tes applis de révision du BTS.</p>`+BLOCS.map(b=>`<div class="card ch" ${b.u?`onclick="location.href='${b.u}'"`:''}><div class="num" style="width:auto;padding:0 10px">${b.t}</div><div class="tt"><b>${b.d}</b><div class="mute">${b.u?'Ouvrir':'Bientôt'}</div></div></div>`).join('')}
+fetch('data/index.json').then(r=>r.json()).then(d=>{IDX=d;route()});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+</script>
+</body></html>
