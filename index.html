@@ -357,7 +357,7 @@ th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute
     <button type="button" data-go="accueil">Chapitres</button>
     <button type="button" data-go="examen">Examen</button>
     <button type="button" data-go="a-revoir">À revoir <span class="badge" id="revBadge" hidden></span></button>
-    <button type="button" id="navPdf" onclick="window.open('bibliotheque.html','_blank','noopener')">PDF</button>
+    <button type="button" id="navPdf" onclick="location.href='bibliotheque.html'">PDF</button>
   </nav>
 </div></header>
 <main class="wrap" id="app"></main>
@@ -531,6 +531,8 @@ function renderChapter(n){
   else if (tab === "schemas") { if (e.svgs) panelSvgs(p, e.svgs); else panelSchemas(p, c); }
   else if (tab === "cartes") Flash(p, CH[n].cards, () => renderChapterKeepTab(n));
   else Quiz(p, { pool:CH[n].qs, count:10, chapter:n });
+  const PDFT = {complete:['Fiche_complete','Fiche complète'], notes:['Prise_de_notes','Prise de notes'], carte:['Carte_mentale','Carte mentale'], schemas:['Schemas','Schémas']}[tab];
+  if (PDFT) { const k = String(n).padStart(2,'0'); const a = document.createElement('a'); a.className = 'btn'; a.style.cssText = 'display:block;text-align:center;margin:0 0 .8rem'; a.href = 'supernova.html?file=' + encodeURIComponent('pdf/ch'+k+'/BPADN_'+PDFT[0]+'_Chapitre'+k+'.pdf') + '&name=' + encodeURIComponent(PDFT[1]+' · '+(c.titre||c.title||('Chapitre '+n))); a.textContent = '📄 Ouvrir le PDF dans Supernova'; p.prepend(a); }
 }
 function renderChapterKeepTab(n){ const y = window.scrollY; renderChapter(n); window.scrollTo(0, y); }
 
