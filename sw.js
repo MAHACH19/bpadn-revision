@@ -1,5 +1,5 @@
-// Cache hors ligne de l'appli (version 94bdf99f5b : change à chaque nouvelle fabrication)
-const CACHE = 'bpadn-94bdf99f5b';
+// Cache hors ligne de l'appli (version 0cd732ba6b : change à chaque nouvelle fabrication)
+const CACHE = 'bpadn-0cd732ba6b';
 const PDF_CACHE = 'bpadn-pdf';   // PDF gardés hors ligne : jamais effacés par une mise à jour
 const FILES = ["./", "index.html", "bibliotheque.html", "pdfs.json", "manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png", "vendor/pdf.min.js", "vendor/pdf.worker.min.js", "supernova.html", "vendor/pdf-lib.min.js", "vendor/tex-svg-full.js"];
 self.addEventListener('install', e => {
